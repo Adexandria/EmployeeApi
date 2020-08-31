@@ -20,14 +20,14 @@ namespace EmployeePayroll.profiles
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country))
                 .ForMember(dest => dest.Region, opt => opt.MapFrom(src => src.Region));
          
-            CreateMap<Address,EmployeeModel>()
-                 .ForPath(dest => dest.Address.Id, opt => opt.MapFrom(src => src.HomeAddressId))
-                .ForPath(dest => dest.Address.Address1, opt => opt.MapFrom(src => src.Address1))
-                .ForPath(dest => dest.Address.Address2, opt => opt.MapFrom(src => src.Address2))
-                .ForPath(dest => dest.Address.City, opt => opt.MapFrom(src => src.City))
-                .ForPath(dest => dest.Address.Region, opt => opt.MapFrom(src => src.Region))
-                .ForPath(dest => dest.Address.Country, opt => opt.MapFrom(src => src.Country))
-                .ForPath(dest => dest.Address.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
+            CreateMap<Address,Employee>()
+                 .ForPath(dest => dest.HomeAddress.HomeAddressId, opt => opt.MapFrom(src => src.HomeAddressId))
+                .ForPath(dest => dest.HomeAddress.Address1, opt => opt.MapFrom(src => src.Address1))
+                .ForPath(dest => dest.HomeAddress.Address2, opt => opt.MapFrom(src => src.Address2))
+                .ForPath(dest => dest.HomeAddress.City, opt => opt.MapFrom(src => src.City))
+                .ForPath(dest => dest.HomeAddress.Region, opt => opt.MapFrom(src => src.Region))
+                .ForPath(dest => dest.HomeAddress.Country, opt => opt.MapFrom(src => src.Country))
+                .ForPath(dest => dest.HomeAddress.PostalCode, opt => opt.MapFrom(src => src.PostalCode));
 
         }
     }
