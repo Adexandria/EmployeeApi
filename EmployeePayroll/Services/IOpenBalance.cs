@@ -9,6 +9,7 @@ namespace EmployeePayroll.Services
     public interface IOpenBalance
     {
         OpenBalances Update(OpenBalances openBalances);
-        Task<OpenBalances> Add(OpenBalances openBalances, Guid id);
+        int Save();
+     
     }
 }

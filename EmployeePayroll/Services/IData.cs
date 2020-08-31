@@ -13,7 +13,7 @@ namespace EmployeePayroll.Services
         public Task<Employee> GetEmployee(Guid EmployeeId);
         Task<Employee> Add(Employee employee);
         Task<int> Save();
-       Employee Update(Employee employee);
+        Employee Update(Employee employee);
         public Task<int> Delete(Guid EmployeeId);
     }
 }

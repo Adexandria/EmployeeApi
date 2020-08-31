@@ -17,36 +17,41 @@ namespace EmployeePayroll.Services
             this.db = db;
 
         }
-        public  async Task<PayTemplates> AddTemplates(PayTemplates payTemplates, Guid id)
+        private async Task<LeaveLines> GetLeaveId(Guid Id)
         {
-            var query = await GetPay(id);
-            if(query== null)
+            if (Id == null)
             {
-                throw new NullReferenceException(nameof(query));
+                throw new NullReferenceException(nameof(Id));
             }
-            query.DeductionId = Guid.NewGuid();
-            query.EarningId = Guid.NewGuid();
-            query.LinesId = Guid.NewGuid();
-            query.ReId = Guid.NewGuid();
-            query.SuperId = Guid.NewGuid();
-            query.Guid = Guid.NewGuid();
-            query.MembershipId = Guid.NewGuid();
-            await db.PayTemplates.AddAsync(payTemplates);
-            return payTemplates;
+            return await db.LeaveLines
+                .Where(r => r.LeaveLinesId == Id)
+                .FirstOrDefaultAsync();
         }
-        private async Task<PayTemplates> GetPay(Guid Id)
+        public async Task<PayTemplates> GetPay(Guid Id)
         {
             if(Id== null)
             {
                 throw new NullReferenceException(nameof(Id));
             }
-            return await db.PayTemplates.Where(r => r.PayTemplatesId == Id).FirstOrDefaultAsync();
+            return await db.PayTemplates.Where(r => r.PayTemplatesId == Id)
+                .Include(r=>r.LeaveLines)
+                .Include(r=>r.LeaveBalances)
+                .Include(r=>r.ReimbursementLines)
+                .Include(r=>r.SuperLines)
+                .Include(r=>r.SuperMemberships)
+                .Include(r=>r.EarningsLines)
+                .Include(r=>r.DeductionLines).AsNoTracking().FirstOrDefaultAsync();
         }
         public PayTemplates Update(PayTemplates payTemplates)
         {
             var query = db.PayTemplates.Attach(payTemplates);
             query.State = EntityState.Modified;
             return payTemplates;
+        }
+
+        public int Save()
+        {
+            return db.SaveChanges();
         }
     }
 }

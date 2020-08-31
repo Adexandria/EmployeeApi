@@ -46,6 +46,14 @@ namespace EmployeePayroll.Services
             employee.AddressId = Guid.NewGuid();
             employee.OpenBalancesId = Guid.NewGuid();
             employee.TemplatesId = Guid.NewGuid();
+            employee.LinesId = Guid.NewGuid();
+            employee.Guid = Guid.NewGuid();
+            employee.ReId = Guid.NewGuid();
+            employee.SuperId = Guid.NewGuid();
+            employee.MembershipId = Guid.NewGuid();
+            employee.EarningId = Guid.NewGuid();
+            employee.DeductionId = Guid.NewGuid();
+            employee.BalanceId = Guid.NewGuid();
             await db.Employee.AddAsync(employee);
             return employee;
         }
@@ -68,12 +76,20 @@ namespace EmployeePayroll.Services
             {
                 throw new NullReferenceException(nameof(EmployeeId));
             }
-            return  await db.Employee
+            return await db.Employee
                 .Where(r => r.EmployeeId == EmployeeId)
-                .Include(r=>r.BankAccount)
-                .Include(r=>r.HomeAddress)
-                .Include(r=>r.OpenBalances)
-                .Include(r=>r.PayTemplates)
+                .Include(r => r.BankAccount)
+                .Include(r => r.HomeAddress)
+                .Include(r => r.OpenBalances)
+                .Include(r => r.PayTemplates)
+                .Include(r => r.OpenBalances).ThenInclude(r => r.LeaveLines)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.DeductionLines)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.LeaveBalances)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.ReimbursementLines)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.LeaveLines)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.SuperLines)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.SuperMemberships)
+                 .Include(r => r.PayTemplates).ThenInclude(r => r.EarningsLines)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
         }
