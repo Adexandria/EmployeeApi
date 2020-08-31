@@ -48,7 +48,14 @@ namespace EmployeePayroll.Entities
         public Guid OpenBalancesId { get; set; }
         public Guid TemplatesId { get; set; }
         public Address HomeAddress { get; set; }
-       
+        public Guid LinesId { get; set; }
+        public Guid DeductionId { get; set; }
+        public Guid EarningId { get; set; }
+        public Guid ReId { get; set; }
+        public Guid SuperId { get; set; }
+        public Guid Guid { get; set; }
+        public Guid MembershipId { get; set; }
+        public Guid BalanceId { get; set; }
         public Bank BankAccount { get; set; }
         public PayTemplates PayTemplates { get; set; }
         public OpenBalances OpenBalances { get; set; }

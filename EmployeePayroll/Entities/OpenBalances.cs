@@ -10,7 +10,7 @@ namespace EmployeePayroll.Entities
         public Guid LinesId { get; set; }
         public LeaveLines LeaveLines { get; set; }
         public DateTimeOffset OpeningBalanceDate { get; set; }
-        public int Tax { get; set; }
+        public string Tax { get; set; }
      
     }
 }
