@@ -4,14 +4,16 @@ using EmployeePayroll.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmployeePayroll.Migrations
 {
     [DbContext(typeof(DataDb))]
-    partial class DataDbModelSnapshot : ModelSnapshot
+    [Migration("20200828172136_first79")]
+    partial class first79
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,20 +113,11 @@ namespace EmployeePayroll.Migrations
                     b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BalanceId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("BankId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("DateOfBirth")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid>("DeductionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EarningId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -137,9 +130,6 @@ namespace EmployeePayroll.Migrations
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("Guid")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Homenumber")
                         .HasColumnType("nvarchar(max)");
@@ -156,12 +146,6 @@ namespace EmployeePayroll.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<Guid>("LinesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MembershipId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
@@ -176,17 +160,11 @@ namespace EmployeePayroll.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ReId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTimeOffset>("StartDate")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("SuperId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("TemplatesId")
                         .HasColumnType("uniqueidentifier");
