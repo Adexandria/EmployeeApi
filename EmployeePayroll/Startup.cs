@@ -36,9 +36,7 @@ namespace EmployeePayroll
 
             services.AddTransient<IPropertyMappingService, PropertyMappingService>();
             services.AddScoped<IData, DataRepository>();
-            services.AddScoped<IAddress, AddressRepository>();
             services.AddScoped<IOpenBalance, OpenRepository>();
-            services.AddScoped<IBank, Bankrepository>();
             services.AddScoped<ITemplates, TemplatesRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
               services.AddDbContext<DataDb>(opt =>
